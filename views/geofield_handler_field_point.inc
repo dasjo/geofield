@@ -15,13 +15,13 @@ class geofield_handler_field_point extends views_handler_field_field {
       foreach ($object as $a) {
         if (is_array($a)) {
           foreach ($a as $b) {
-            return 'POINT( ' . $b[0]['lon'] . ' ' . $b[0]['lat'] . ')';
+            if(isset($b[0]['lon']) && isset($b[0]['lat'])) {
+              return 'POINT( ' . $b[0]['lon'] . ' ' . $b[0]['lat'] . ')';
+            }
           }
         }
       }
     }
-    else {
-      return '';
-    }
+    return '';
   }
 }
